@@ -56,59 +56,81 @@ const App = () => {
 
   const techStack = [
     {
-      category: "LANGUAGES",
+      category: "Languages",
+      description: "Core programming languages I use daily",
+      accent: "blue",
       items: [
-        { name: "TypeScript", icon: <Code size={20} /> },
-        { name: "Python", icon: <Terminal size={20} /> },
-        { name: "Java", icon: <Box size={20} /> },
-        { name: "PHP", icon: <Code2 size={20} /> },
-        { name: "Dart", icon: <Zap size={20} /> }
+        { name: "TypeScript", icon: <Code size={18} /> },
+        { name: "Python", icon: <Terminal size={18} /> },
+        { name: "Java", icon: <Box size={18} /> },
+        { name: "PHP", icon: <Code2 size={18} /> },
+        { name: "Dart", icon: <Zap size={18} /> }
       ]
     },
     {
-      category: "FRAMEWORKS & LIBRARIES",
+      category: "Frameworks & Libs",
+      description: "Tools for building modern applications",
+      accent: "purple",
       items: [
-        { name: "Next.js", icon: <Globe size={20} /> },
-        { name: "React", icon: <Zap size={20} /> },
-        { name: "Tailwind CSS", icon: <Layout size={20} /> },
-        { name: "Expo", icon: <Rocket size={20} /> },
-        { name: "React Native", icon: <Smartphone size={20} /> }
+        { name: "Next.js", icon: <Globe size={18} /> },
+        { name: "React", icon: <Zap size={18} /> },
+        { name: "Tailwind CSS", icon: <Layout size={18} /> },
+        { name: "Expo", icon: <Rocket size={18} /> },
+        { name: "React Native", icon: <Smartphone size={18} /> }
       ]
     },
     {
-      category: "BAAS & DB",
+      category: "Backend & DB",
+      description: "Infrastructure and data management",
+      accent: "emerald",
       items: [
-        { name: "SQL", icon: <Database size={20} /> },
-        { name: "NoSQL", icon: <HardDrive size={20} /> },
-        { name: "Supabase", icon: <Zap size={20} className="text-emerald-500" /> },
-        { name: "Firebase", icon: <Flame size={20} className="text-orange-500" /> }
+        { name: "SQL", icon: <Database size={18} /> },
+        { name: "NoSQL", icon: <HardDrive size={18} /> },
+        { name: "Supabase", icon: <Zap size={18} /> },
+        { name: "Firebase", icon: <Flame size={18} /> }
       ]
     },
     {
-      category: "TOOLS",
+      category: "Tools & Design",
+      description: "Workflow and UI/UX software",
+      accent: "rose",
       items: [
-        { name: "Git", icon: <GitBranch size={20} /> },
-        { name: "GitHub", icon: <GithubCustomIcon size={20} /> },
-        { name: "Figma", icon: <Palette size={20} /> },
-        { name: "Canva", icon: <Palette size={20} /> }
+        { name: "Git", icon: <GitBranch size={18} /> },
+        { name: "GitHub", icon: <GithubCustomIcon size={18} /> },
+        { name: "Figma", icon: <Palette size={18} /> },
+        { name: "Canva", icon: <Palette size={18} /> }
       ]
     }
   ];
+
+  /**
+   * แก้ไขปัญหาตัวแดงโดยการระบุประเภทข้อมูล (any) ให้กับพารามิเตอร์ accent
+   * และระบุประเภทข้อมูลให้กับ object classes เพื่อให้ TypeScript ยอมรับการเข้าถึงด้วย dynamic key
+   */
+  const getAccentClass = (accent: any) => {
+    const classes: any = {
+      blue: "text-blue-600 bg-blue-50 border-blue-100",
+      purple: "text-purple-600 bg-purple-50 border-purple-100",
+      emerald: "text-emerald-600 bg-emerald-50 border-emerald-100",
+      rose: "text-rose-600 bg-rose-50 border-rose-100"
+    };
+    return classes[accent] || classes.blue;
+  };
 
   return (
     <div className="min-h-screen bg-[#fafafa] text-slate-800 selection:bg-yellow-200 font-sans">
       {/* --- Background Decorative Blobs --- */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-blue-100/50 blur-[120px]"></div>
-        <div className="absolute bottom-[10%] left-[-5%] w-[30%] h-[30%] rounded-full bg-pink-100/50 blur-[100px]"></div>
+        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-blue-100/30 blur-[120px]"></div>
+        <div className="absolute bottom-[10%] left-[-5%] w-[30%] h-[30%] rounded-full bg-pink-100/30 blur-[100px]"></div>
       </div>
 
       {/* --- Navigation --- */}
       <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-lg border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-lg flex items-center justify-center text-white shadow-lg font-bold text-xs">J</div>
-            <span className="text-lg font-bold tracking-tight text-slate-900 uppercase">Portfolio</span>
+            <div className="w-8 h-8 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-lg flex items-center justify-center text-white shadow-lg font-bold text-xs uppercase tracking-tighter">JS</div>
+            <span className="text-lg font-bold tracking-tight text-slate-900 uppercase tracking-widest">Jirawad</span>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-semibold text-slate-500">
             <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
@@ -121,17 +143,17 @@ const App = () => {
       <main className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
         {/* --- Hero Section --- */}
         <section className="mb-32 flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-1 animate-in fade-in slide-in-from-left-8 duration-1000">
+          <div className="flex-1 animate-in fade-in slide-in-from-left-8 duration-1000 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-slate-600 text-xs font-bold mb-8 italic uppercase tracking-wider">
               <Sparkles size={14} className="text-yellow-500" /> Student Developer & Intern Candidate
             </div>
             <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tight text-slate-900 leading-[1.1]">
               Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Digital Solutions</span> <br /> with Passion.
             </h1>
-            <p className="text-xl text-slate-500 max-w-xl mb-10 leading-relaxed font-medium">
+            <p className="text-xl text-slate-500 max-w-xl mb-10 leading-relaxed font-medium mx-auto md:mx-0">
               I'm a third-year Digital Technology and Innovation student at SAU, focused on building impactful applications across web and mobile platforms.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center md:justify-start gap-4">
               <a href="#projects" className="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-100 flex items-center gap-2">
                 View My Projects <ChevronRight size={18} />
               </a>
@@ -142,7 +164,7 @@ const App = () => {
         {/* --- Projects Section --- */}
         <section id="projects" className="mb-32 scroll-mt-24">
           <div className="flex items-center gap-4 mb-16">
-            <h2 className="text-4xl font-black text-slate-900">Featured Projects</h2>
+            <h2 className="text-4xl font-black text-slate-900 tracking-tight">Featured Projects</h2>
             <div className="h-px flex-1 bg-slate-200"></div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -188,24 +210,31 @@ const App = () => {
           </div>
         </section>
 
-        {/* --- Tech Stack Section --- */}
+        {/* --- Tech Stack Section (Updated UI) --- */}
         <section id="tech-stack" className="mb-32 scroll-mt-24">
           <div className="flex items-center gap-4 mb-16">
-            <h2 className="text-4xl font-black text-slate-900">Tech Stack<span className="text-blue-600">.</span></h2>
+            <h2 className="text-4xl font-black text-slate-900 tracking-tight">Tech Stack<span className="text-blue-600">.</span></h2>
             <div className="h-px flex-1 bg-slate-200"></div>
           </div>
           
-          <div className="space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {techStack.map((group, idx) => (
-              <div key={idx} className="space-y-6">
-                <h3 className="text-xs font-black text-slate-400 tracking-[0.2em] uppercase">{group.category}</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              <div key={idx} className="bg-white border border-slate-100 p-8 rounded-[40px] hover:border-slate-200 hover:shadow-xl transition-all duration-500">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">{group.category}</h3>
+                  <div className={`text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-widest ${getAccentClass(group.accent)}`}>
+                    Expertise
+                  </div>
+                </div>
+                <p className="text-slate-400 text-sm mb-8 font-medium italic">{group.description}</p>
+                
+                <div className="flex flex-wrap gap-3">
                   {group.items.map((item, itemIdx) => (
                     <div 
                       key={itemIdx} 
-                      className="bg-white border border-slate-100 p-6 rounded-2xl flex flex-col items-center justify-center gap-4 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-50/50 transition-all group cursor-default"
+                      className={`flex items-center gap-3 px-5 py-3 rounded-2xl border transition-all duration-300 hover:scale-105 hover:shadow-md cursor-default bg-white border-slate-100 hover:border-${group.accent}-200 group`}
                     >
-                      <div className="p-3 bg-slate-50 rounded-xl text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+                      <div className={`p-1.5 rounded-lg transition-colors bg-slate-50 text-slate-400 group-hover:${getAccentClass(group.accent)}`}>
                         {item.icon}
                       </div>
                       <span className="text-sm font-bold text-slate-600 group-hover:text-slate-900">{item.name}</span>
