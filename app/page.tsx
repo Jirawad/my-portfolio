@@ -1,65 +1,271 @@
-import Image from "next/image";
+import React from 'react';
+import { 
+  ExternalLink, Mail, Code2, User, Briefcase, 
+  ChevronRight, Terminal, Cpu, Globe, Sparkles, 
+  Palette, Layers, Phone, MessageCircle,
+  Database, Layout, HardDrive, GitBranch,
+  Smartphone, Rocket, Zap, Flame, Box, Code
+} from 'lucide-react';
 
-export default function Home() {
+// สร้าง GitHub Icon ด้วย SVG โดยตรงเพื่อป้องกันปัญหา Import Error ใน IDE
+const GithubCustomIcon = ({ size = 20, className = "" }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
+
+const App = () => {
+  const projects = [
+    {
+      title: "Habit Tracker App",
+      description: "A habit-tracking application built to master state management and Supabase integration.",
+      tags: ["Next.js", "Supabase", "TypeScript"],
+      color: "bg-blue-50 text-blue-600 border-blue-100",
+      link: "https://badhabbit.vercel.app/?fbclid=IwY2xjawRUGItleHRuA2FlbQIxMQBicmlkETFGN1RqYjZaVUpJaU5Gdmhyc3J0YwZhcHBfaWQBMAABHof6dyzrd05wvWFBF56AHF4_KNBNn7W7WyfWjHyLdd4kdp0pIhL5fy_clFr4_aem_IC3Hi7VCzxsa5HI8DPKJTQ",
+      github: "https://github.com/ChaiyasitKAKA/badhabbit"
+    },
+    {
+      title: "Food Tracker System",
+      description: "A food logging system focused on clean UI/UX and fundamental CRUD operations.",
+      tags: ["React", "Tailwind CSS", "Node.js"],
+      color: "bg-purple-50 text-purple-600 border-purple-100",
+      link: "https://next-food-tracker-app-x2a2.vercel.app/",
+      github: "https://github.com/Jirawad/rn-run-tracker-app"
+    },
+    {
+      title: "Songkhla Travel Guide",
+      description: "A destination guide mobile application for Songkhla province, focusing on tourism and local experience.",
+      tags: ["React Native", "Expo", "Mobile App"],
+      color: "bg-orange-50 text-orange-600 border-orange-100",
+      link: null,
+      github: "https://github.com/Jirawad/rn-6652410033-thai-provice-app"
+    }
+  ];
+
+  const techStack = [
+    {
+      category: "LANGUAGES",
+      items: [
+        { name: "TypeScript", icon: <Code size={20} /> },
+        { name: "Python", icon: <Terminal size={20} /> },
+        { name: "Java", icon: <Box size={20} /> },
+        { name: "PHP", icon: <Code2 size={20} /> },
+        { name: "Dart", icon: <Zap size={20} /> }
+      ]
+    },
+    {
+      category: "FRAMEWORKS & LIBRARIES",
+      items: [
+        { name: "Next.js", icon: <Globe size={20} /> },
+        { name: "React", icon: <Zap size={20} /> },
+        { name: "Tailwind CSS", icon: <Layout size={20} /> },
+        { name: "Expo", icon: <Rocket size={20} /> },
+        { name: "React Native", icon: <Smartphone size={20} /> }
+      ]
+    },
+    {
+      category: "BAAS & DB",
+      items: [
+        { name: "SQL", icon: <Database size={20} /> },
+        { name: "NoSQL", icon: <HardDrive size={20} /> },
+        { name: "Supabase", icon: <Zap size={20} className="text-emerald-500" /> },
+        { name: "Firebase", icon: <Flame size={20} className="text-orange-500" /> }
+      ]
+    },
+    {
+      category: "TOOLS",
+      items: [
+        { name: "Git", icon: <GitBranch size={20} /> },
+        { name: "GitHub", icon: <GithubCustomIcon size={20} /> },
+        { name: "Figma", icon: <Palette size={20} /> },
+        { name: "Canva", icon: <Palette size={20} /> }
+      ]
+    }
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-[#fafafa] text-slate-800 selection:bg-yellow-200 font-sans">
+      {/* --- Background Decorative Blobs --- */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-blue-100/50 blur-[120px]"></div>
+        <div className="absolute bottom-[10%] left-[-5%] w-[30%] h-[30%] rounded-full bg-pink-100/50 blur-[100px]"></div>
+      </div>
+
+      {/* --- Navigation --- */}
+      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-lg border-b border-slate-100">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-lg flex items-center justify-center text-white shadow-lg font-bold text-xs">J</div>
+            <span className="text-lg font-bold tracking-tight text-slate-900 uppercase">Portfolio</span>
+          </div>
+          <div className="hidden md:flex gap-8 text-sm font-semibold text-slate-500">
+            <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
+            <a href="#tech-stack" className="hover:text-blue-600 transition-colors">Tech Stack</a>
+            <a href="#contact" className="px-5 py-2 bg-slate-900 hover:bg-blue-600 text-white rounded-full transition-all">Contact</a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+      </nav>
+
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
+        {/* --- Hero Section --- */}
+        <section className="mb-32 flex flex-col md:flex-row items-center gap-12">
+          <div className="flex-1 animate-in fade-in slide-in-from-left-8 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-slate-600 text-xs font-bold mb-8 italic uppercase tracking-wider">
+              <Sparkles size={14} className="text-yellow-500" /> Student Developer & Intern Candidate
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tight text-slate-900 leading-[1.1]">
+              Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Digital Solutions</span> <br /> with Passion.
+            </h1>
+            <p className="text-xl text-slate-500 max-w-xl mb-10 leading-relaxed font-medium">
+              I'm a third-year Digital Technology and Innovation student at SAU, focused on building impactful applications across web and mobile platforms.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="#projects" className="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-100 flex items-center gap-2">
+                View My Projects <ChevronRight size={18} />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* --- Projects Section --- */}
+        <section id="projects" className="mb-32 scroll-mt-24">
+          <div className="flex items-center gap-4 mb-16">
+            <h2 className="text-4xl font-black text-slate-900">Featured Projects</h2>
+            <div className="h-px flex-1 bg-slate-200"></div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div key={index} className="group bg-white border border-slate-200 rounded-[32px] p-8 hover:shadow-2xl transition-all duration-500 flex flex-col">
+                <div className={`mb-6 p-4 w-fit rounded-2xl ${project.color} transition-transform group-hover:scale-110`}>
+                  <Layers size={28} />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-slate-900">{project.title}</h3>
+                <p className="text-slate-500 text-sm mb-6 leading-relaxed flex-grow">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-8 text-[10px] font-bold">
+                  {project.tags.map((tag, tIndex) => (
+                    <span key={tIndex} className="px-3 py-1 rounded-full bg-slate-100 text-slate-500 uppercase tracking-wider">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                
+                <div className="flex flex-wrap items-center gap-y-4 gap-x-6 pt-6 border-t border-slate-50">
+                  <a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors group/link"
+                  >
+                    GitHub Repo 
+                    <ExternalLink size={16} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </a>
+                  
+                  {project.link && (
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                      Live Demo <Sparkles size={16} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* --- Tech Stack Section --- */}
+        <section id="tech-stack" className="mb-32 scroll-mt-24">
+          <div className="flex items-center gap-4 mb-16">
+            <h2 className="text-4xl font-black text-slate-900">Tech Stack<span className="text-blue-600">.</span></h2>
+            <div className="h-px flex-1 bg-slate-200"></div>
+          </div>
+          
+          <div className="space-y-12">
+            {techStack.map((group, idx) => (
+              <div key={idx} className="space-y-6">
+                <h3 className="text-xs font-black text-slate-400 tracking-[0.2em] uppercase">{group.category}</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  {group.items.map((item, itemIdx) => (
+                    <div 
+                      key={itemIdx} 
+                      className="bg-white border border-slate-100 p-6 rounded-2xl flex flex-col items-center justify-center gap-4 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-50/50 transition-all group cursor-default"
+                    >
+                      <div className="p-3 bg-slate-50 rounded-xl text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+                        {item.icon}
+                      </div>
+                      <span className="text-sm font-bold text-slate-600 group-hover:text-slate-900">{item.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* --- Contact Section --- */}
+        <section id="contact" className="text-center scroll-mt-24">
+          <div className="max-w-4xl mx-auto py-20 px-8 rounded-[48px] bg-gradient-to-tr from-blue-600 to-purple-600 text-white shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+            
+            <h2 className="text-4xl md:text-5xl font-black mb-6 relative z-10 uppercase tracking-tight">Interested in working together?</h2>
+            <p className="text-blue-100 mb-12 text-lg font-medium relative z-10 opacity-90 max-w-2xl mx-auto">
+              I'm currently looking for internship opportunities to grow my skills and contribute to exciting projects.
+            </p>
+            
+            <div className="flex flex-wrap justify-center items-center gap-6 relative z-10 px-4">
+              <a 
+                href="mailto:s6652410033@sau.ac.th" 
+                className="flex items-center gap-3 px-8 py-4 bg-white text-blue-600 font-bold rounded-2xl transition-all hover:scale-105 shadow-xl min-w-[240px] justify-center"
+              >
+                <Mail size={20} /> s6652410033@sau.ac.th
+              </a>
+              
+              <a 
+                href="tel:0957030247" 
+                className="flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/30 font-bold rounded-2xl transition-all hover:bg-white/20 hover:scale-105 shadow-xl min-w-[240px] justify-center"
+              >
+                <Phone size={20} /> 095-703-0247
+              </a>
+              
+              <a 
+                href="https://line.me/ti/p/~m_2017" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-8 py-4 bg-[#06C755] text-white font-bold rounded-2xl transition-all hover:brightness-110 hover:scale-105 shadow-xl min-w-[240px] justify-center"
+              >
+                <MessageCircle size={20} /> Line ID: m_2017
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
+
+      <footer className="py-12 px-6 bg-white border-t border-slate-100 text-center relative z-10">
+        <p className="text-slate-900 font-bold mb-1 uppercase tracking-tight">Jirawad Sadjayat</p>
+        <p className="text-slate-400 text-xs font-semibold uppercase tracking-widest text-[10px]">
+          Digital Technology and Innovation Student • SAU
+        </p>
+        <p className="mt-4 text-slate-300 text-[10px] font-medium uppercase tracking-tighter">
+          © {new Date().getFullYear()} ALL RIGHTS RESERVED
+        </p>
+      </footer>
     </div>
   );
-}
+};
+
+export default App;
